@@ -1,0 +1,39 @@
+%  "ownb4" document style package
+%  K.-D. Schewe, September 18, 1995
+%
+%  "Bernhards Quetschformat"
+%  adapted for LaTeX2e
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ownb4}[1994/07/03 LaTeX2e own package]
+\RequirePackage{ifthen}
+
+\newlength{\aiv@width} \setlength{\aiv@width}{210mm}
+\newlength{\tmp@width} \setlength{\tmp@width}{\aiv@width}
+
+\if@twocolumn \textwidth175mm \marginparsep2.5mm
+\else \ifcase \@ptsize\relax \textwidth164mm \or \textwidth154mm
+		\or \textwidth164mm \fi \marginparsep4mm \fi 
+\addtolength{\tmp@width}{-\textwidth}
+
+\ifcase \@ptsize\relax \textheight 56\baselineskip
+		\or \textheight 52\baselineskip
+		\or \textheight 48\baselineskip \fi
+\addtolength{\textheight}{\topskip}
+
+\if@twoside \if@twocolumn \setlength{\oddsidemargin}{0.6\tmp@width}
+		\setlength{\evensidemargin}{0.4\tmp@width}
+	\else   \setlength{\oddsidemargin}{0.4\tmp@width}
+		\setlength{\evensidemargin}{0.6\tmp@width} \fi
+	\else   \setlength{\oddsidemargin}{0.5\tmp@width}
+		\setlength{\evensidemargin}{\oddsidemargin} \fi
+
+\setlength{\marginparwidth}{\evensidemargin}
+\addtolength{\marginparwidth}{-\marginparsep}
+\addtolength{\marginparwidth}{-6mm}
+\addtolength{\oddsidemargin}{-1in} 
+\addtolength{\evensidemargin}{-1in}
+
+\topmargin-21.4mm
+\columnsep5mm
+\parskip0pt plus2pt

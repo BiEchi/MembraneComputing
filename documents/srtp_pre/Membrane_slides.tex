@@ -1,0 +1,491 @@
+\documentclass[12pt,landscape]{article}
+
+\usepackage{amsmath,amssymb,latexsym,eepic}
+\usepackage[mathscr]{eucal}
+\usepackage{./ownb4}
+\usepackage[pdftex]{graphicx,color}
+
+\pagestyle{plain}
+\definecolor{backg}{rgb}{.96,.96,1}
+\definecolor{LightGreen}{rgb}{.975,1,.975}
+\definecolor{lightgreen}{rgb}{.3,1,.3}
+\definecolor{pink}{rgb}{1,.6,.6}
+\definecolor{lightblue}{rgb}{.9,.9,1}
+\definecolor{yellow}{rgb}{1,1,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{DarkGreen}{rgb}{0,.5,0}
+\definecolor{DarkRed}{rgb}{.8,0,0}
+\definecolor{c10010080}{rgb}{1,1,0.8}
+\definecolor{purple}{rgb}{0.5,0,0.5}
+\newfont{\gigantisch}{ptmbo scaled 5000}
+\newfont{\notsogigantisch}{ptmbo scaled 3000}
+
+\newcommand{\setofstates}[2]{\mathcal{#1}_#2}
+\newcommand{\multiset}[1]{\{\!\!\{{#1}\}\!\!\}}
+
+\newcommand{\bbbone}{\mathchoice{\rm 1\mskip-4mu l} {\rm 1\mskip-4mu l}%
+{\rm 1\mskip-4.5mu l} {\rm 1\mskip-5mu l}}
+
+\makeatletter
+\def\@oddfoot{\small\rm 
+Capturing Membrane Computing by ASMs
+\hfill
+\thepage/\pageref{ende}}
+\def\@evenfoot{\@oddfoot}
+\makeatother
+
+\addtolength{\topmargin}{1cm}
+\textheight17cm
+\textwidth24cm
+\parindent0cm
+\unitlength1cm
+\setlength{\fboxrule}{5pt}
+\renewcommand{\labelitemi}{\textcolor{DarkRed}{$\bullet$}}
+\renewcommand{\labelitemii}{\textcolor{Blue}{\large $\bullet$}}
+\renewcommand{\labelitemiii}{\textcolor{DarkGreen}{\large $\bullet$}}
+
+\begin{document}
+
+\ \vfill
+
+\begin{center}
+
+\textcolor{DarkRed}{\textbf{\gigantisch Capturing Membrane\\[1ex] Computing by ASMs}}
+
+\vspace*{2cm}
+
+{\LARGE\textbf{\textcolor{Blue}{Klaus-Dieter Schewe}, Loredana Tec, Qing Wang}}
+
+\vspace*{1.25cm}
+
+{\large Linz, Austria \& Canberra, Australia}
+
+\vspace*{0.5cm}
+
+{\large kdschewe@acm.org}
+
+\end{center}
+
+\pagecolor{backg}
+
+\vfill\vfill
+
+\newpage
+\section*{\centering\textcolor{DarkGreen}{\notsogigantisch Membrane Structures}}
+
+\vfill
+
+\LARGE
+
+\textcolor{DarkRed}{\textbf{Membrane Structure:}} $ms = [[][[][]]]$
+
+\vfill
+
+\textcolor{DarkRed}{\textbf{Set of membranes:}} $M_{ms} = \{ \mu_0, \mu_{00}, \mu_{01}, \mu_{010}, \mu_{011} \}$
+
+\vfill
+
+\begin{center}
+\colorbox{c10010080}{\begin{minipage}{22cm}
+\begin{picture}(22,10)
+
+\thicklines
+
+\qbezier(1.5,0.5)(11,0.5)(20.5,0.5) 
+\qbezier(0.5,1.5)(0.5,0.5)(1.5,0.5)
+\qbezier(21.5,1.5)(21.5,0.5)(20.5,0.5)
+\qbezier(1.5,9.5)(11,9.5)(20.5,9.5) 
+\qbezier(0.5,8.5)(0.5,9.5)(1.5,9.5)
+\qbezier(21.5,8.5)(21.5,9.5)(20.5,9.5)
+\qbezier(0.5,1.5)(0.5,5)(0.5,8.5)
+\qbezier(21.5,1.5)(21.5,5)(21.5,8.5)
+\put(20.7,0.8){\makebox(0,0){\Large $\mu_0$}}
+
+\qbezier(2.5,1.5)(5.5,1.5)(8.5,1.5) 
+\qbezier(1.5,2.5)(1.5,1.5)(2.5,1.5)
+\qbezier(8.5,1.5)(9.5,1.5)(9.5,2.5)
+\qbezier(2.5,8.5)(5.5,8.5)(8.5,8.5) 
+\qbezier(1.5,7.5)(1.5,8.5)(2.5,8.5)
+\qbezier(8.5,8.5)(9.5,8.5)(9.5,7.5)
+\qbezier(1.5,2.5)(1.5,5)(1.5,7.5)
+\qbezier(9.5,2.5)(9.5,5)(9.5,7.5)
+\put(8.7,1.8){\makebox(0,0){\Large $\mu_{00}$}}
+
+\qbezier(13.5,1.5)(16.5,1.5)(19.5,1.5) 
+\qbezier(12.5,2.5)(12.5,1.5)(13.5,1.5)
+\qbezier(19.5,1.5)(20.5,1.5)(20.5,2.5)
+\qbezier(13.5,8.5)(16.5,8.5)(19.5,8.5) 
+\qbezier(12.5,7.5)(12.5,8.5)(13.5,8.5)
+\qbezier(19.5,8.5)(20.5,8.5)(20.5,7.5)
+\qbezier(12.5,2.5)(12.5,5)(12.5,7.5)
+\qbezier(20.5,2.5)(20.5,5)(20.5,7.5)
+\put(19.7,1.8){\makebox(0,0){\Large $\mu_{01}$}}
+
+\qbezier(13,3.5)(13,2)(14.5,2)
+\qbezier(13,3.5)(13,5)(14.5,5)
+\qbezier(14.5,2)(15,2)(15.5,2)
+\qbezier(17,3.5)(17,2)(15.5,2)
+\qbezier(17,3.5)(17,5)(15.5,5)
+\qbezier(14.5,5)(15,5)(15.5,5)
+\put(15.8,2.3){\makebox(0,0){\Large $\mu_{010}$}}
+
+\qbezier(16,6.5)(16,5)(17.5,5)
+\qbezier(16,6.5)(16,8)(17.5,8)
+\qbezier(17.5,5)(18,5)(18.5,5)
+\qbezier(20,6.5)(20,5)(18.5,5)
+\qbezier(20,6.5)(20,8)(18.5,8)
+\qbezier(17.5,8)(18,8)(18.5,8)
+\put(18.8,5.3){\makebox(0,0){\Large $\mu_{011}$}}
+
+\end{picture}
+\end{minipage}}
+\end{center}
+
+\vfill
+
+\newpage
+\section*{\centering\textcolor{DarkGreen}{\notsogigantisch Super Cells}}
+
+\vfill
+
+\textcolor{DarkRed}{\textbf{Set of Objects:}} $\mathcal{O} = \{ a, b, c, d, e \}$
+
+\vfill
+
+\textcolor{DarkRed}{\textbf{Association of objects:}} $o : M_{ms} \rightarrow \mathcal{O}^*$
+
+\vfill
+
+\begin{center}
+\colorbox{c10010080}{\begin{minipage}{22cm}
+\begin{picture}(22,10)
+
+\thicklines
+
+\qbezier(1.5,0.5)(11,0.5)(20.5,0.5) 
+\qbezier(0.5,1.5)(0.5,0.5)(1.5,0.5)
+\qbezier(21.5,1.5)(21.5,0.5)(20.5,0.5)
+\qbezier(1.5,9.5)(11,9.5)(20.5,9.5) 
+\qbezier(0.5,8.5)(0.5,9.5)(1.5,9.5)
+\qbezier(21.5,8.5)(21.5,9.5)(20.5,9.5)
+\qbezier(0.5,1.5)(0.5,5)(0.5,8.5)
+\qbezier(21.5,1.5)(21.5,5)(21.5,8.5)
+\put(20.7,0.8){\makebox(0,0){\Large $\mu_0$}}
+
+\put(11,3.5){\makebox(0,0){\LARGE $c$}}
+\put(11,4.5){\makebox(0,0){\LARGE $b$}}
+\put(11,5.5){\makebox(0,0){\LARGE $a$}}
+\put(11,6.5){\makebox(0,0){\LARGE $a$}}
+
+\qbezier(2.5,1.5)(5.5,1.5)(8.5,1.5) 
+\qbezier(1.5,2.5)(1.5,1.5)(2.5,1.5)
+\qbezier(8.5,1.5)(9.5,1.5)(9.5,2.5)
+\qbezier(2.5,8.5)(5.5,8.5)(8.5,8.5) 
+\qbezier(1.5,7.5)(1.5,8.5)(2.5,8.5)
+\qbezier(8.5,8.5)(9.5,8.5)(9.5,7.5)
+\qbezier(1.5,2.5)(1.5,5)(1.5,7.5)
+\qbezier(9.5,2.5)(9.5,5)(9.5,7.5)
+\put(8.7,1.8){\makebox(0,0){\Large $\mu_{00}$}}
+
+\put(5,4.5){\makebox(0,0){\LARGE $d$}}
+\put(5,5.5){\makebox(0,0){\LARGE $a$}}
+\put(6,4.5){\makebox(0,0){\LARGE $d$}}
+\put(6,5.5){\makebox(0,0){\LARGE $c$}}
+
+\qbezier(13.5,1.5)(16.5,1.5)(19.5,1.5) 
+\qbezier(12.5,2.5)(12.5,1.5)(13.5,1.5)
+\qbezier(19.5,1.5)(20.5,1.5)(20.5,2.5)
+\qbezier(13.5,8.5)(16.5,8.5)(19.5,8.5) 
+\qbezier(12.5,7.5)(12.5,8.5)(13.5,8.5)
+\qbezier(19.5,8.5)(20.5,8.5)(20.5,7.5)
+\qbezier(12.5,2.5)(12.5,5)(12.5,7.5)
+\qbezier(20.5,2.5)(20.5,5)(20.5,7.5)
+\put(19.7,1.8){\makebox(0,0){\Large $\mu_{01}$}}
+
+\put(13.5,6){\makebox(0,0){\LARGE $e$}}
+\put(13.5,7){\makebox(0,0){\LARGE $b$}}
+\put(14.5,6){\makebox(0,0){\LARGE $e$}}
+\put(14.5,7){\makebox(0,0){\LARGE $c$}}
+\put(15.5,7){\makebox(0,0){\LARGE $d$}}
+
+\qbezier(13,3.5)(13,2)(14.5,2)
+\qbezier(13,3.5)(13,5)(14.5,5)
+\qbezier(14.5,2)(15,2)(15.5,2)
+\qbezier(17,3.5)(17,2)(15.5,2)
+\qbezier(17,3.5)(17,5)(15.5,5)
+\qbezier(14.5,5)(15,5)(15.5,5)
+\put(15.8,2.3){\makebox(0,0){\Large $\mu_{010}$}}
+
+\put(14.5,4){\makebox(0,0){\LARGE $c$}}
+\put(15,3){\makebox(0,0){\LARGE $e$}}
+\put(15.5,4){\makebox(0,0){\LARGE $d$}}
+
+\qbezier(16,6.5)(16,5)(17.5,5)
+\qbezier(16,6.5)(16,8)(17.5,8)
+\qbezier(17.5,5)(18,5)(18.5,5)
+\qbezier(20,6.5)(20,5)(18.5,5)
+\qbezier(20,6.5)(20,8)(18.5,8)
+\qbezier(17.5,8)(18,8)(18.5,8)
+\put(18.8,5.3){\makebox(0,0){\Large $\mu_{011}$}}
+
+\put(17.5,6){\makebox(0,0){\LARGE $b$}}
+\put(17.5,7){\makebox(0,0){\LARGE $b$}}
+\put(18.5,6){\makebox(0,0){\LARGE $e$}}
+\put(18.5,7){\makebox(0,0){\LARGE $b$}}
+
+\end{picture}
+\end{minipage}}
+\end{center}
+
+\vfill
+
+\newpage
+\section*{\centering\textcolor{DarkGreen}{\notsogigantisch Rules / 1}}
+
+\vfill
+
+$\hat{\mathcal{O}} = \mathcal{O} \times \{ \text{here},\; \text{out},\; \text{in}_\mu \}$, $\delta \notin \mathcal{O}$, \textcolor{DarkRed}{\textbf{$P$-System:}} $(\textit{ms\/},\mathcal{O},o,\mu_0,\varrho)$
+
+\vfill
+
+\textcolor{DarkRed}{\textbf{Association of rules:}} $\varrho : M_{ms} \rightarrow \{ \ell \rightarrow r \mid \ell \in \mathcal{O}^*, r \in \hat{\mathcal{O}}^* \cup \hat{\mathcal{O}}^* \delta \}$
+
+\vfill
+
+\begin{center}
+\colorbox{c10010080}{\begin{minipage}{22cm}
+\begin{picture}(22,10)
+
+\thicklines
+
+\qbezier(1.5,0.5)(11,0.5)(20.5,0.5) 
+\qbezier(0.5,1.5)(0.5,0.5)(1.5,0.5)
+\qbezier(21.5,1.5)(21.5,0.5)(20.5,0.5)
+\qbezier(1.5,9.5)(11,9.5)(20.5,9.5) 
+\qbezier(0.5,8.5)(0.5,9.5)(1.5,9.5)
+\qbezier(21.5,8.5)(21.5,9.5)(20.5,9.5)
+\qbezier(0.5,1.5)(0.5,5)(0.5,8.5)
+\qbezier(21.5,1.5)(21.5,5)(21.5,8.5)
+\put(20.7,0.8){\makebox(0,0){\Large $\mu_0$}}
+
+\put(11,3.5){\makebox(0,0){\LARGE $c$}}
+\put(11,4.5){\makebox(0,0){\LARGE $b$}}
+\put(10.5,5){\colorbox{red}{\makebox(1,1){\LARGE $a$}}}
+\put(10.5,6.5){\colorbox{red}{\makebox(1,1){\LARGE $a$}}}
+\put(10.5,2){\colorbox{green}{\makebox(1,1){\LARGE $c$}}}
+
+\qbezier(2.5,1.5)(5.5,1.5)(8.5,1.5) 
+\qbezier(1.5,2.5)(1.5,1.5)(2.5,1.5)
+\qbezier(8.5,1.5)(9.5,1.5)(9.5,2.5)
+\qbezier(2.5,8.5)(5.5,8.5)(8.5,8.5) 
+\qbezier(1.5,7.5)(1.5,8.5)(2.5,8.5)
+\qbezier(8.5,8.5)(9.5,8.5)(9.5,7.5)
+\qbezier(1.5,2.5)(1.5,5)(1.5,7.5)
+\qbezier(9.5,2.5)(9.5,5)(9.5,7.5)
+\put(8.7,1.8){\makebox(0,0){\Large $\mu_{00}$}}
+
+\put(5,4.5){\makebox(0,0){\LARGE $d$}}
+\put(5,5.5){\makebox(0,0){\LARGE $a$}}
+\put(6,4.5){\makebox(0,0){\LARGE $d$}}
+\put(6,5.5){\makebox(0,0){\LARGE $c$}}
+\put(5,3){\colorbox{green}{\makebox(1,1){\LARGE $b$}}}
+
+\qbezier(13.5,1.5)(16.5,1.5)(19.5,1.5) 
+\qbezier(12.5,2.5)(12.5,1.5)(13.5,1.5)
+\qbezier(19.5,1.5)(20.5,1.5)(20.5,2.5)
+\qbezier(13.5,8.5)(16.5,8.5)(19.5,8.5) 
+\qbezier(12.5,7.5)(12.5,8.5)(13.5,8.5)
+\qbezier(19.5,8.5)(20.5,8.5)(20.5,7.5)
+\qbezier(12.5,2.5)(12.5,5)(12.5,7.5)
+\qbezier(20.5,2.5)(20.5,5)(20.5,7.5)
+\put(19.7,1.8){\makebox(0,0){\Large $\mu_{01}$}}
+
+\put(13.5,6){\makebox(0,0){\LARGE $e$}}
+\put(13.5,7){\makebox(0,0){\LARGE $b$}}
+\put(14.5,6){\makebox(0,0){\LARGE $e$}}
+\put(14.5,7){\makebox(0,0){\LARGE $c$}}
+\put(15.5,7){\makebox(0,0){\LARGE $d$}}
+
+\qbezier(13,3.5)(13,2)(14.5,2)
+\qbezier(13,3.5)(13,5)(14.5,5)
+\qbezier(14.5,2)(15,2)(15.5,2)
+\qbezier(17,3.5)(17,2)(15.5,2)
+\qbezier(17,3.5)(17,5)(15.5,5)
+\qbezier(14.5,5)(15,5)(15.5,5)
+\put(15.8,2.3){\makebox(0,0){\Large $\mu_{010}$}}
+
+\put(14.5,4){\makebox(0,0){\LARGE $c$}}
+\put(15,3){\makebox(0,0){\LARGE $e$}}
+\put(15.5,4){\makebox(0,0){\LARGE $d$}}
+
+\qbezier(16,6.5)(16,5)(17.5,5)
+\qbezier(16,6.5)(16,8)(17.5,8)
+\qbezier(17.5,5)(18,5)(18.5,5)
+\qbezier(20,6.5)(20,5)(18.5,5)
+\qbezier(20,6.5)(20,8)(18.5,8)
+\qbezier(17.5,8)(18,8)(18.5,8)
+\put(18.8,5.3){\makebox(0,0){\Large $\mu_{011}$}}
+
+\put(17.5,6){\makebox(0,0){\LARGE $b$}}
+\put(17.5,7){\makebox(0,0){\LARGE $b$}}
+\put(18.5,6){\makebox(0,0){\LARGE $e$}}
+\put(18.5,7){\makebox(0,0){\LARGE $b$}}
+
+\end{picture}
+\end{minipage}}
+\end{center}
+
+\vfill
+
+\newpage
+\section*{\centering\textcolor{DarkGreen}{\notsogigantisch Rules / 2}}
+
+\vfill
+
+\begin{center}
+\colorbox{c10010080}{\begin{minipage}{22cm}
+\begin{picture}(22,10)
+
+\thicklines
+
+\qbezier(1.5,0.5)(11,0.5)(20.5,0.5) 
+\qbezier(0.5,1.5)(0.5,0.5)(1.5,0.5)
+\qbezier(21.5,1.5)(21.5,0.5)(20.5,0.5)
+\qbezier(1.5,9.5)(11,9.5)(20.5,9.5) 
+\qbezier(0.5,8.5)(0.5,9.5)(1.5,9.5)
+\qbezier(21.5,8.5)(21.5,9.5)(20.5,9.5)
+\qbezier(0.5,1.5)(0.5,5)(0.5,8.5)
+\qbezier(21.5,1.5)(21.5,5)(21.5,8.5)
+\put(20.7,0.8){\makebox(0,0){\Large $\mu_0$}}
+
+\put(11,3){\makebox(0,0){\LARGE $c$}}
+\put(10.5,3.5){\colorbox{red}{\makebox(1,1){\LARGE $b$}}}
+\put(10.5,5){\colorbox{red}{\makebox(1,1){\LARGE $a$}}}
+\put(11,6.5){\makebox(0,0){\LARGE $a$}}
+\put(10.5,1.5){\colorbox{green}{\makebox(1,1){\LARGE $b$}}}
+
+\qbezier(2.5,1.5)(5.5,1.5)(8.5,1.5) 
+\qbezier(1.5,2.5)(1.5,1.5)(2.5,1.5)
+\qbezier(8.5,1.5)(9.5,1.5)(9.5,2.5)
+\qbezier(2.5,8.5)(5.5,8.5)(8.5,8.5) 
+\qbezier(1.5,7.5)(1.5,8.5)(2.5,8.5)
+\qbezier(8.5,8.5)(9.5,8.5)(9.5,7.5)
+\qbezier(1.5,2.5)(1.5,5)(1.5,7.5)
+\qbezier(9.5,2.5)(9.5,5)(9.5,7.5)
+\put(8.7,1.8){\makebox(0,0){\Large $\mu_{00}$}}
+
+\put(5,4.5){\makebox(0,0){\LARGE $d$}}
+\put(5,5.5){\makebox(0,0){\LARGE $a$}}
+\put(6,4.5){\makebox(0,0){\LARGE $d$}}
+\put(6,5.5){\makebox(0,0){\LARGE $c$}}
+
+\qbezier(13.5,1.5)(16.5,1.5)(19.5,1.5) 
+\qbezier(12.5,2.5)(12.5,1.5)(13.5,1.5)
+\qbezier(19.5,1.5)(20.5,1.5)(20.5,2.5)
+\qbezier(13.5,8.5)(16.5,8.5)(19.5,8.5) 
+\qbezier(12.5,7.5)(12.5,8.5)(13.5,8.5)
+\qbezier(19.5,8.5)(20.5,8.5)(20.5,7.5)
+\qbezier(12.5,2.5)(12.5,5)(12.5,7.5)
+\qbezier(20.5,2.5)(20.5,5)(20.5,7.5)
+\put(19.7,1.8){\makebox(0,0){\Large $\mu_{01}$}}
+
+\put(13.5,6){\makebox(0,0){\LARGE $e$}}
+\put(13.5,7){\makebox(0,0){\LARGE $b$}}
+\put(14.5,6){\makebox(0,0){\LARGE $e$}}
+\put(14.5,7){\makebox(0,0){\LARGE $c$}}
+\put(15.5,7){\makebox(0,0){\LARGE $d$}}
+\put(17.5,3){\colorbox{green}{\makebox(1,1){\LARGE $a$}}}
+
+\qbezier(13,3.5)(13,2)(14.5,2)
+\qbezier(13,3.5)(13,5)(14.5,5)
+\qbezier(14.5,2)(15,2)(15.5,2)
+\qbezier(17,3.5)(17,2)(15.5,2)
+\qbezier(17,3.5)(17,5)(15.5,5)
+\qbezier(14.5,5)(15,5)(15.5,5)
+\put(15.8,2.3){\makebox(0,0){\Large $\mu_{010}$}}
+
+\put(14.5,4){\makebox(0,0){\LARGE $c$}}
+\put(15,3){\makebox(0,0){\LARGE $e$}}
+\put(15.5,4){\makebox(0,0){\LARGE $d$}}
+
+\qbezier(16,6.5)(16,5)(17.5,5)
+\qbezier(16,6.5)(16,8)(17.5,8)
+\qbezier(17.5,5)(18,5)(18.5,5)
+\qbezier(20,6.5)(20,5)(18.5,5)
+\qbezier(20,6.5)(20,8)(18.5,8)
+\qbezier(17.5,8)(18,8)(18.5,8)
+\put(18.8,5.3){\makebox(0,0){\Large $\mu_{011}$}}
+
+\put(17.5,6){\makebox(0,0){\LARGE $b$}}
+\put(17.5,7){\makebox(0,0){\LARGE $b$}}
+\put(18.5,6){\makebox(0,0){\LARGE $e$}}
+\put(18.5,7){\makebox(0,0){\LARGE $b$}}
+
+\end{picture}
+\end{minipage}}
+\end{center}
+
+\vfill
+
+Rules are partially ordered by preference
+
+\vfill
+
+A glimpse of practice: $abb \rightarrow cdd$ with\\
+$a = C O \textit{Cl\/}_2$ (phosgene), $b = N H_3$ (ammonia), $c = C O (N H_2)_2$ (urea), $d = H \textit{Cl\/}$ (hydro-chloride) 
+
+\vfill
+
+\newpage
+\section*{\centering\textcolor{DarkGreen}{\notsogigantisch Extending the Scope}}
+
+\vfill
+
+\begin{itemize}
+
+\item We exploit unbounded parallelism and partial updates to capture $P$-systems by ASMs
+
+\begin{itemize}
+
+\item However, it seems more realistic, if rules were executed in an asynchronous way ($\rightarrow$ exploit concurrent ASMs)
+
+\end{itemize}
+
+\vfill
+
+\item $P$-systems change their states, which are super cells, but rules remain fixed
+
+\begin{itemize}
+
+\item It seems more realistic, if rules were also subject to change ($\rightarrow$ exploit reflective ASMs)
+
+\end{itemize}
+
+\vfill
+
+\item Objects in $P$-systems are elements of an alphabet $\mathcal{O}$
+
+\begin{itemize}
+
+\item It seems more realistic, if objects had a deep structure ($\rightarrow$ exploit Tarski structures underlying ASMs)
+
+\end{itemize}
+
+\vfill
+
+\item $P$-systems are to mimick real biological systems
+
+\begin{itemize}
+
+\item It seems more realistic to consider also continuous behaviour ($\rightarrow$ exploit hybrid ASMs)
+
+\end{itemize}
+
+\end{itemize}
+
+\vfill
+
+\label{ende}
+
+\end{document}

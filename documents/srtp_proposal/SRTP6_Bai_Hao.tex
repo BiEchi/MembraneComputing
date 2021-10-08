@@ -1,0 +1,190 @@
+\documentclass[11pt]{llncs}
+
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{color}
+
+
+\title{Concurrent Extensions of Membrane Computing}
+
+\subtitle{SRTP Project Proposal}
+
+\author{Hao Bai, Arko Dey Kowshik, Keyi Shen}
+
+\institute{Zhejiang University, UIUC Institute}
+
+\date{March 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Description}
+
+The goal of the project is to investigate extensions to the model of $P$-systems used for the processing in membrane computing. The envisioned extensions are threefold: (1) turn $P$-systems into concurrent systems, i.e. assume that processing of rules can be handled autonomously and independent from other rules; (2) turn $P$-systems into ambient systems depending on their environment and permit changes to the processing rules; (3) leverage the notion of state of a super-cell to include structure rather than only strings.
+
+\subsection{Background}
+
+Natural computing is an umbrella for various computing paradigms taking processes in nature as models \cite{paun:1998}. It captures neural networks, genetic programming, DNA computing and membrane computing \cite{paun:2002}. Membrane computing exploits hierarchically nested membrane structures as in cells, each associated with multisets of objects \cite{paun:ecss2009}. These associations are manipulated by so-called $P$-systems, which associate rules with each membrane. Rules are executed in parallel leading to the creation, elimination and wandering of objects through membranes as well as the manipulation of the membrane structure as such \cite{paun:csjm2001}. As elaborated in \cite{paun:2002} membrane computing has been shown to be useful for many applications, in particular in the context of bio-medical systems \cite{petre:jucs1999}.
+
+A formal specification of membranes and $P$-systems has been sketched in \cite{schewe:abz2018} using Abstract State Machines \cite{boerger:2003}. This has led to several open questions concerning limitations of the computation model with respect to concurrency, adaptivity and the used notion of super-cells. While a maximal fireable set of rules is used in $P$-systems, it appears more natural to assume that the different membranes act more independently and the rule sets are applied in an asynchronous way. In particular, if we think about the rules expressing chemical reactions on molecules as objects, such asynchronous behaviour much better the time-consuming nature of such processes. Foundations of asynchronous concurrent computation have been handled by concurrent ASMs in \cite{boerger:ai2016}.
+
+Concerning adaptivity, it is already known that membrane behaviour should depend on ambiences. This suggest to consider also ambient ASMs \cite{boerger:jcss2012} in an extension of the formal model. More generally, as super-cells in membrane computing change, it even seems possible to change the behaviour as well, i.e. to change the rules. This lead to linguistic reflection, which is formally covered by reflective ASMs \cite{schewe:synasc2017}. Reflection allows a machine to modify its self representation in every step, and to use the amended behaviour specification in the next step.
+
+\subsection{Objectives}
+
+The objectives of the project are as follows:
+
+\begin{quote}
+\begin{enumerate}\renewcommand{\labelenumi}{\textbf{O\arabic{enumi}.}}
+
+\item Extend $P$-systems into concurrent systems thereby allowing time-consuming behaviour of rules.
+
+\item Extend $P$-systems to become ambient and reflective, i.e. make rules dependent on the ambient environment and subject to change by rules.
+
+\item Extend the notion of super-cell in membrane computing by considering arbitrary Tarski structures in membranes rather than just multisets of characters taken from a fixed, finite alphabet.
+
+\end{enumerate}
+\end{quote}
+
+\subsection{Methodology}
+
+The project will approach the three envisioned extensions one-by-one. In all cases the starting point is the formalisation of membranes and $P$-systems by ASMs in \cite{schewe:abz2018}. In a $P$-systems a rule is a pair $\ell \rightarrow r$, where the stimulator $\ell$ on the left-hand side is just a multiset of objects $o \in O$ using a fixed alphabet $O$, and the action $r$ on the right-hand side is a multiset of object/location pairs or a specific {\em dissolve} action. In addition, there exists a priority order on the set of rules. A $P$ system selects a maximal set of rules that can fire simultaneously, then removes $\ell$ and adds $r$ for each of the selected rules. 
+
+As the processing is strictly sequential, it suggests an asynchronous alternative based on concurrent ASMs \cite{boerger:ai2016}. For this we can group rules and associate abstract agents with these groups. As rule execution involves the removal of objects from membranes, while their presence indicates that another rule may still fire, it will be necessary to add a blocking mechanism. We will provide a modified concurrent ASM specification for this and approach an implementation of asynchronous $P$-systems together with an illustration by meaningful examples.
+
+Concerning adaptation we proceed analogously, this time extending the specification by ambients and reflection. It will not be necessary to exploit the tree algebra for reflective machines, as rules are already part of the specification of $P$-systems, and the excution engine refers to these rules. Finally, our extension will modify the definition of super-cell using signatures and structures defined over them rather than just multisets of objects. Then the left hand side of a rule can be replaced by an arbitrary condition to be evaluated on a membrane in a generalised super-cell, and the action part can become an almost arbitrary ASM rule subject to the restriction that updates can only be local, membranes can at best be created inside the given membrane or dissolved, and the blocking of other rules is preserved. Again, we will provide a modified specification for this, an implementation of extended $P$-systems, and an illustration by meaningful examples.
+
+\section{Project Team}
+
+\begin{tabular}{l@{\quad}p{3.7cm}@{\quad}p{8cm}}
+Project Members: & Bai Hao & Sophomore student of Electrical and Computer Engineering \\
+&& email: Haob.19@intl.zju.edu.cn \\
+& Kowshik, Arko Dey & Junior student of Electrical and Computer Engineering \\
+&& email: Arko.18@intl.zju.edu.cn \\
+& Keyi Shen & Sophomore student of Electrical and Computer Engineering \\
+&& email: Keyi.19@intl.zju.edu.cn \\
+Supervisor: & Schewe, Klaus-Dieter & Professor, Zhejiang University -- UIUC Institute \\
+&& email: kd.schewe@intl.zju.edu.cn\\
+&& University id: H219026\\[1ex]
+\end{tabular}
+
+All team members are knowledgeable in software systems design and algorithms, which have been handled in the courses on Discrete Mathematics and Data Structures. They are also skilled in programming. 
+
+\section{Pseudo Code}
+
+\begin{algorithm}[H]
+  \caption{Algorithm of Data Enhancement}
+  \SetAlgoLined
+  
+  \KwData{3 pieces of data\_3d\_std of size [n, x, 32, 3(x, y, z)]}
+  \KwResult{1 piece of data\_3d\_std of size [n, x, 32, 3(x, y, k)]}
+  
+  \tcp{random functioning}
+  data\_3d\_std = random\_translation(data\_3d\_std)\;
+  data\_3d\_std = random\_rotation(data\_3d\_std)\;
+  \tcp{collision elimination}
+  data\_3d\_std = collision\_elimination\_std(data\_3d\_std)\;
+  \tcp{camera generation}
+  camera\_std, intrinsic\_matrix = camera\_generator()\;
+  \tcp{cento}
+  data\_3d\_std = transform(camera\_std, intrinsic\_matrix, data\_3d\_std)
+  
+
+ \Return{1 piece of data\_3d\_std}\;
+\end{algorithm}
+
+\begin{algorithm}[H]
+	\caption{Algorithm of Random Functioning}
+	\SetAlgoLined
+	
+	\KwData{3 pieces of data\_3d\_std}
+	\KwResult{1 piece of data\_3d\_std}
+	
+	\tcp{randomly shift the timeline}
+	\textbf{set} frame \textbf{as} a shift value\;
+	array = array[ frame : ]\;
+	
+	\tcp{randomly translationally move the 3 pieces of data\_3d\_std}
+	\textbf{set} array \textbf{as} a random-shift-value matrix\;
+	
+	\tcp{randomly rotationally move the 3 pieces of data\_3d\_std}
+	\eIf{user choose to add randomly rotational movements}
+	{
+		\textbf{find} the random rotation\_matrix\;
+	}
+	{
+		\Return{0}\;
+	}
+	
+	\tcp{apply changes and combine the 3 pieces of data\_3d\_std}
+	
+	\textbf{apply} array, rotation\_matrix \textbf{to} data\_3d\_std\;
+	\textbf{combine} 3 pieces of data\_3d\_std\;
+	
+	
+	\Return{0}\;
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+  \caption{Sequential Approach For Eliminating Individual Collisions (with the frame-skipping method)}
+  \SetAlgoLined
+  
+  \KwData{Tensor of shape $(n, x, 17, 3)$ where there are $n$ people, each with $x$ frames and 17 vertices (each of which contains 3 correponds).}
+  \KwResult{Tensor of shape $(n, x, 17, 3)$, where each person has an own shift vector through all the frames.}
+  \For{i in n}
+  {
+  \textbf{skip} the first person\;
+  	\For{frame in x (step 3)}
+  	{
+  		\uIf{the frame has collision with any other person}
+  		{
+  			shift\_vector\_list(for i)  \textbf{append} find\_shift\_vector()\;
+  		}
+  		\Else
+  		{
+  			shift\_vector\_list(for i) \textbf{append} $(0,0,0)$\;
+  		}
+  	}
+	\textbf{assign} max\_shift\_vector(for i) = \\ \ \ \ \ \ find\_the\_maximum\_shift\_vector(shift\_vector\_list(for i))\;
+  	 \textbf{broadcast add} all frames in x of i += \\ \ \ \ \ \ max\_shift\_vector(for i)
+  }
+
+ \Return{the new tensor}\;
+\end{algorithm}
+
+\begin{algorithm}[H]
+  \caption{Find the shift vector of the $frame$ on person $i$}
+  \SetAlgoLined
+  
+  \KwData{Person $i$, given $frame$, 17 vertices, each with 2 corresponds}
+  \KwResult{The shift vector for this frame}
+  
+  shift\_vector = (0, 0, 0)\;
+  \While{True}
+  {
+  	flag\_collision = \textit{False}\;
+  	\For{another\_person in $(i-1)$}
+  	{
+  		\If{is\_overlapped(i, another\_person)}
+		{
+			flag\_collision = \textit{True}\;
+			shift\_vector\ += decide\_offset\_of\_i(i, another\_person)\;
+			\textbf{preview} applying shift\_vector to data\_3d\_std[i]\;
+			continue\;
+		}
+  	}
+	\If{flag\_collision is \textit{False}}
+	{
+		\textbf{break}\;
+	}
+  }
+
+ \Return{shift\_vector}\;
+\end{algorithm}
+
+
+\bibliographystyle{abbrv-fr}
+\bibliography{srtp2021}
+
+\end{document}
